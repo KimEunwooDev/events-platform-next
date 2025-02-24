@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import "./globals.css";
+import "@/app/styles/globals.css";
+import CommonHeader from "@/components/common/header/CommonHeader";
+import { Toaster } from "sonner";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -15,8 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${roboto} ${roboto} antialiased`}>{children}</body>
-    </html>
+    <>
+      <CommonHeader />
+      <html lang="en">
+        <body className={roboto.className}>{children}</body>
+        <Toaster />
+      </html>
+    </>
   );
 }

@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 56px;
+
+  padding: 0 16px;
+
+  border-bottom: 1px solid #e6e6e6;
+
+  &__logoBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 100%;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    &__logo {
+      height: 75%;
+    }
+    &__title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+  &__profileBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+  }
+}
