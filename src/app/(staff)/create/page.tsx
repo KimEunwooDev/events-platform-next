@@ -51,7 +51,7 @@ export default function CreatePage() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="space-y-8 flex flex-col"
+          className="w-1/2 space-y-8 flex flex-col m-6 justify-center "
         >
           {/* title input */}
           <FormField
@@ -59,7 +59,7 @@ export default function CreatePage() {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel className="text-xl">Title</FormLabel>
                 <FormControl>
                   <Input placeholder="" {...field} className="bg-white" />
                 </FormControl>
@@ -68,74 +68,73 @@ export default function CreatePage() {
               </FormItem>
             )}
           />
-          {/* date select */}
-          <FormField
-            control={form.control}
-            name="date"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>Date</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        variant={"outline"}
-                        className={cn(
-                          "w-[240px] pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
-                        )}
-                      >
-                        {field.value ? (
-                          format(field.value, "PPP")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={field.value}
-                      onSelect={field.onChange}
-                      className="bg-white rounded-md border"
-                      disabled={(date) =>
-                        date > new Date() || date < new Date("1900-01-01")
-                      }
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-                <FormDescription>
-                  Your date of birth is used to calculate your age.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* titme select */}
-          <div className="flex items-center justify-between flex-wrap sm:flex-nowrap w-full gap-2">
+
+          <div className="w-full flex items-center justify-between flex-wrap sm:flex-nowrap">
+            {/* titme select */}
             <FormField
               control={form.control}
               name="date"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Start time</FormLabel>
-                  <DateTimePicker />
+                  <FormLabel className="text-xl">Date</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-[190px] pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        className="bg-white rounded-md border"
+                        disabled={(date) =>
+                          date > new Date() || date < new Date("1900-01-01")
+                        }
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="date"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel>End time</FormLabel>
-                  <DateTimePicker />
-                </FormItem>
-              )}
-            />
+            <div className="flex items-center flex-wrap sm:flex-nowrap gap-4">
+              <FormField
+                control={form.control}
+                name="date"
+                render={() => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel className="text-xl">Start time</FormLabel>
+                    <DateTimePicker />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="date"
+                render={() => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel className="text-xl">End time</FormLabel>
+                    <DateTimePicker />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
           {/* location */}
           <FormField
@@ -143,11 +142,10 @@ export default function CreatePage() {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Location</FormLabel>
+                <FormLabel className="text-xl">Location</FormLabel>
                 <FormControl>
                   <Input placeholder="" {...field} className="bg-white" />
                 </FormControl>
-                <FormDescription>This is your event name.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -158,7 +156,7 @@ export default function CreatePage() {
             name="summary"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Summary</FormLabel>
+                <FormLabel className="text-xl">Summary</FormLabel>
                 <FormControl>
                   <Textarea placeholder="" {...field} className="bg-white" />
                 </FormControl>
@@ -176,7 +174,7 @@ export default function CreatePage() {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel className="text-xl">Description</FormLabel>
                 <FormControl>
                   <Textarea placeholder="" {...field} className="bg-white" />
                 </FormControl>

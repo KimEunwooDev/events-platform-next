@@ -4,7 +4,6 @@ import { format } from "date-fns";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
@@ -15,16 +14,12 @@ import { CalendarIcon } from "lucide-react";
 import { useState } from "react";
 
 export function DateTimePicker() {
-  const newDate = new Date();
-  const [date, setDate] = useState<Date>(newDate);
+  const defaultDate = new Date();
+  defaultDate.setHours(0, 0, 0, 0);
+  const [date, setDate] = useState<Date>(defaultDate);
   const [isOpen, setIsOpen] = useState(false);
 
   const hours = Array.from({ length: 12 }, (_, i) => i + 1);
-  const handleDateSelect = (selectedDate: Date | undefined) => {
-    if (selectedDate) {
-      setDate(selectedDate);
-    }
-  };
 
   const handleTimeChange = (
     type: "hour" | "minute" | "ampm",
@@ -54,7 +49,7 @@ export function DateTimePicker() {
         <Button
           variant="outline"
           className={cn(
-            "w-[180px] justify-start text-left font-normal",
+            "w-[130px] justify-start text-left font-normal",
             !date && "text-muted-foreground"
           )}
         >
@@ -64,12 +59,6 @@ export function DateTimePicker() {
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <div className="sm:flex">
-          {/* <Calendar
-            mode="single"
-            selected={date}
-            onSelect={handleDateSelect}
-            initialFocus
-          /> */}
           <div className="flex flex-col sm:flex-row sm:h-[300px] divide-y sm:divide-y-0 sm:divide-x">
             <ScrollArea className="w-64 sm:w-auto">
               <div className="flex sm:flex-col p-2">

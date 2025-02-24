@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
-import SideNavigation from "@/components/common/navigation/SideNavigation";
 import Image from "next/image";
 
 export default function ManagePage() {
@@ -10,7 +9,6 @@ export default function ManagePage() {
 
   return (
     <div className="flex">
-      <SideNavigation />
       <div className={styles.container}>
         <div className={styles.container__onBoard}>
           <div className={styles.container__onBoard__title}>
@@ -20,7 +18,7 @@ export default function ManagePage() {
             Click the button to create a event
           </div>
           <button
-            className={styles.__onBoard__button}
+            className={styles.container__onBoard__button}
             onClick={() => router.push("/create")}
           >
             <Image

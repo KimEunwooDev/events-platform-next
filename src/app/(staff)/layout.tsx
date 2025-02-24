@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "@/app/styles/globals.css";
-import CommonHeader from "@/components/common/header/CommonHeader";
 import { Toaster } from "sonner";
+import SideNavigation from "@/components/common/navigation/SideNavigation";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -19,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <CommonHeader />
-        <main>{children}</main>
+        <div className="flex">
+          <SideNavigation />
+          <main>{children}</main>
+          <Toaster />
+        </div>
       </body>
-      <Toaster />
     </html>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./SideNavigation.module.scss";
 import { Button } from "@/components/ui/button";
 import { Input } from "../../ui/input";
@@ -22,7 +24,7 @@ export default function SideNavigation() {
       <div className={styles.container__buttonBox}>
         <Button
           variant={"outline"}
-          className="w-full text-orange-500 hover:bg-orange-50 hover:text-orange-500 border-orange-400"
+          className="w-full text-orange-500 hover:bg-orange-50 hover:text-orange-500 border-orange-400 cursor-pointer"
           onClick={() => router.push("/create")}
         >
           Create new events
