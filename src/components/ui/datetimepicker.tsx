@@ -13,33 +13,36 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { CalendarIcon } from "lucide-react";
 import { useState } from "react";
 
-export function DateTimePicker() {
-  const defaultDate = new Date();
-  defaultDate.setHours(0, 0, 0, 0);
-  const [date, setDate] = useState<Date>(defaultDate);
+export function DateTimePicker({
+  value,
+  onChange,
+}: {
+  value: Date;
+  onChange: (date: Date) => void;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const hours = Array.from({ length: 12 }, (_, i) => i + 1);
 
   const handleTimeChange = (
     type: "hour" | "minute" | "ampm",
-    value: string
+    newValue: string
   ) => {
-    if (date) {
-      const newDate = new Date(date);
+    if (value) {
+      const newDate = new Date(value);
       if (type === "hour") {
         newDate.setHours(
-          (parseInt(value) % 12) + (newDate.getHours() >= 12 ? 12 : 0)
+          (parseInt(newValue) % 12) + (newDate.getHours() >= 12 ? 12 : 0)
         );
       } else if (type === "minute") {
-        newDate.setMinutes(parseInt(value));
+        newDate.setMinutes(parseInt(newValue));
       } else if (type === "ampm") {
         const currentHours = newDate.getHours();
         newDate.setHours(
-          value === "PM" ? currentHours + 12 : currentHours - 12
+          newValue === "PM" ? currentHours + 12 : currentHours - 12
         );
       }
-      setDate(newDate);
+      onChange(newDate);
     }
   };
 
@@ -50,10 +53,10 @@ export function DateTimePicker() {
           variant="outline"
           className={cn(
             "w-[130px] justify-start text-left font-normal",
-            !date && "text-muted-foreground"
+            !value && "text-muted-foreground"
           )}
         >
-          {date ? format(date, "hh:mm aa") : <span>Star time</span>}
+          {value ? format(value, "hh:mm aa") : <span>Star time</span>}
           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -67,9 +70,7 @@ export function DateTimePicker() {
                     key={hour}
                     size="icon"
                     variant={
-                      date && date.getHours() % 12 === hour % 12
-                        ? "default"
-                        : "ghost"
+                      value.getHours() % 12 === hour % 12 ? "default" : "ghost"
                     }
                     className="sm:w-full shrink-0 aspect-square"
                     onClick={() => handleTimeChange("hour", hour.toString())}
@@ -87,7 +88,7 @@ export function DateTimePicker() {
                     key={minute}
                     size="icon"
                     variant={
-                      date && date.getMinutes() === minute ? "default" : "ghost"
+                      value.getMinutes() === minute ? "default" : "ghost"
                     }
                     className="sm:w-full shrink-0 aspect-square"
                     onClick={() =>
@@ -107,9 +108,8 @@ export function DateTimePicker() {
                     key={ampm}
                     size="icon"
                     variant={
-                      date &&
-                      ((ampm === "AM" && date.getHours() < 12) ||
-                        (ampm === "PM" && date.getHours() >= 12))
+                      (ampm === "AM" && value.getHours() < 12) ||
+                      (ampm === "PM" && value.getHours() >= 12)
                         ? "default"
                         : "ghost"
                     }

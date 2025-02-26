@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "@/app/styles/globals.css";
 import { Toaster } from "sonner";
 import SideNavigation from "@/components/common/navigation/SideNavigation";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
+export const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Event Platform",
@@ -18,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={montserrat.className}>
         <div className="flex">
           <SideNavigation />
           <main>{children}</main>
