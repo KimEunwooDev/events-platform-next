@@ -9,8 +9,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/utils/supabase/supabase";
+// import { supabase } from "@/utils/supabase/supabase";
 import { toast } from "sonner";
+import { supabase } from "@/utils/supabase/client";
 
 export default function ProfileDropdown({ loggedInUser }: any) {
   const router = useRouter();

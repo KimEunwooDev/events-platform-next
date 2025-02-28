@@ -6,10 +6,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { supabase } from "@/utils/supabase/supabase";
+// import { supabase } from "@/utils/supabase/supabase";
 import { useAtom } from "jotai";
 import { loggedInUserAtom } from "@/stores/atoms";
 import ProfileDropdown from "@/components/ProfileDropdown";
+import { supabase } from "@/utils/supabase/client";
 
 export default function CommonHeader() {
   const [loggedInUser, setLoggedInUser] = useAtom(loggedInUserAtom);

@@ -11,11 +11,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import { emailAtom, loggedInUserAtom, passwordAtom } from "@/stores/atoms";
-import { supabase } from "@/utils/supabase/supabase";
+// import { supabase } from "@/utils/supabase/supabase";
 import { useState } from "react";
+import { createClient } from "@/utils/supabase/client";
 
 export function LoginForm({
   className,
@@ -28,6 +29,8 @@ export function LoginForm({
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const supabase = await createClient();
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -49,7 +52,7 @@ export function LoginForm({
       setErrorMessages(error.message);
     }
     if (data.user) {
-      router.push("/");
+      redirect("/");
     }
   };
 

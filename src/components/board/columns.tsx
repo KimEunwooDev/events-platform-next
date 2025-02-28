@@ -60,7 +60,9 @@ export const EventAtcion = ({ event }: { event: Events }) => {
         <DropdownMenuItem onClick={() => router.push(`/event/${event.id}`)}>
           View
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={deleteEvent}>Delete</DropdownMenuItem>
+        <DropdownMenuItem onClick={deleteEvent} className="text-red-400">
+          Delete
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
