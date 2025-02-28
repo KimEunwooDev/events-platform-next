@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 280px;
+  height: 100vh;
+
+  padding: 20px 24px;
+
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__searchBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 4px;
+  }
+
+  &__buttonBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    margin: 12px 0;
+  }
+}
