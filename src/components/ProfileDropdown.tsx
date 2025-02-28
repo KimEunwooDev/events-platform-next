@@ -12,38 +12,39 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/utils/supabase/supabase";
 import { toast } from "sonner";
 
-export default function ProfileDropdown() {
+export default function ProfileDropdown({ loggedInUser }: any) {
   const router = useRouter();
   const handleLogout = async () => {
     await supabase.auth.signOut();
     toast("Logged out");
-    router.push("/auth/login");
+    setTimeout(() => {
+      router.push("/");
+    }, 100);
   };
   const moveToPage = (value: string) => {
     router.push(`/${value}`);
   };
-
+  console.log(loggedInUser);
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className="flex justify-center items-center gap-2 rounded-md  ">
         <Avatar>
           <AvatarImage
             src="https://github.com/shadcn.png"
-            onClick={() => router.push("/admin/manage")}
             className="cursor-pointer"
           />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        {/* <span>{loggedInUser.email}</span> */}
+        <span className="text-sm">{loggedInUser.email}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <DropdownMenuItem>
           <User />
           <span>Profile</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={moveToPage("admin/manage")}>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => moveToPage("admin/manage")}>
           <LayoutGrid />
           <span>Manage events</span>
         </DropdownMenuItem>

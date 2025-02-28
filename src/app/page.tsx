@@ -4,12 +4,14 @@ import EventCard from "@/components/card/EventCard";
 import styles from "./page.module.scss";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/utils/supabase/supabase";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "@/components/common/searchbar/SearchBar";
 import { useAtom, useAtomValue } from "jotai";
 import { eventsAtom } from "@/stores/atoms";
+import Loading from "@/components/Loading";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const [events, setEvents] = useAtom(eventsAtom);
 
   useEffect(() => {
@@ -18,6 +20,7 @@ export default function Home() {
         const { data, error } = await supabase.from("events").select("*");
         if (error) throw error;
         setEvents(data);
+        setIsLoading(false);
       } catch (error) {
         console.error("fetch error", error);
       }
@@ -36,6 +39,7 @@ export default function Home() {
             <SearchBar />
           </div>
         </div>
+        {isLoading && <Loading />}
         <div className={styles.page__contents__listBox}>
           {events.map((event) => {
             return <EventCard event={event} key={event.id} />;

@@ -53,7 +53,7 @@ export default function EditEvent({
       summary: "",
       description: "",
       status: "",
-      imageUrls: "",
+      imageUrls: [],
     },
   });
   const [isLoading, setIsLoading] = useState(true);
@@ -68,6 +68,11 @@ export default function EditEvent({
         .from("events")
         .select()
         .eq("id", id);
+
+      if (!data) {
+        console.error("❌ No events data found: data is null");
+        return;
+      }
 
       const event = data[0];
 
@@ -162,7 +167,7 @@ export default function EditEvent({
           onClick: () => console.log("Undo"),
         },
       });
-      router.push("/manage");
+      router.push("/admin/manage");
     }
   };
 
@@ -178,7 +183,11 @@ export default function EditEvent({
   };
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div className={styles.container}>
+        <Loading />
+      </div>
+    );
   }
 
   return (
@@ -370,7 +379,7 @@ export default function EditEvent({
           <div className="flex justify-center items-center gap-4">
             <Button
               className="bg-white text-balck border-1 "
-              onClick={() => router.push("/manage")}
+              onClick={() => router.push("/admin/manage")}
             >
               Discard
             </Button>

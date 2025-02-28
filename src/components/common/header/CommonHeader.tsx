@@ -18,11 +18,12 @@ export default function CommonHeader() {
   useEffect(() => {
     const getUser = async () => {
       const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        console.error(error.message);
+      if (!data) {
+        if (error) {
+          console.error(error);
+        }
       }
-      if (data?.user && !loggedInUser) {
-        console.log(data.user);
+      if (data?.user) {
         setLoggedInUser(data.user);
       }
     };
@@ -66,7 +67,12 @@ export default function CommonHeader() {
             </Button>
           </>
         )}
-        {loggedInUser && <ProfileDropdown />}
+        {loggedInUser && (
+          <div className="flex justify-center items-center gap-2">
+            <ProfileDropdown loggedInUser={loggedInUser} />
+            {/* <span>{loggedInUser.email}</span> */}
+          </div>
+        )}
       </div>
     </header>
   );

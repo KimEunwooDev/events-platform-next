@@ -32,9 +32,11 @@ export function LoginForm({
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setErrorMessages("Invalid email address");
+      return;
     }
     if (password.length < 8) {
       setErrorMessages("Password must be at least 8 characters long");
+      return;
     }
 
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -46,8 +48,7 @@ export function LoginForm({
       console.error("fail to login", error.message);
       setErrorMessages(error.message);
     }
-    if (data) {
-      console.log(data);
+    if (data.user) {
       router.push("/");
     }
   };

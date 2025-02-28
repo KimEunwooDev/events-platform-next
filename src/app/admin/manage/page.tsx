@@ -24,11 +24,6 @@ export default function ManagePage() {
     fetchEvents();
   }, [events.length, setEvents]);
 
-  // useEffect(() => {
-  //   router.prefetch("/manage");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   if (!events) return <Loading />;
 
   if (events.length === 0) {
@@ -61,5 +56,5 @@ export default function ManagePage() {
     }, 1000);
   }
 
-  return <EventsTable columns={columns} data={events} />;
+  return <>{events && <EventsTable columns={columns} data={events} />}</>;
 }

@@ -137,7 +137,7 @@ export default function CreatePage() {
           onClick: () => console.log("Undo"),
         },
       });
-      router.push("/manage");
+      router.push("/admin/manage");
     }
   };
 
