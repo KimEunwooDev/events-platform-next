@@ -9,20 +9,15 @@ import { EventsTable } from "@/components/board/event-table";
 import { columns } from "@/components/board/columns";
 import { useEffect } from "react";
 import Loading from "@/components/Loading";
-import { getEvents } from "@/lib/getEvents";
+import { useGetEvents } from "@/hooks/apis/useGetEvents";
 
 export default function ManagePage() {
   const router = useRouter();
-  const [events, setEvents] = useAtom(eventsAtom);
+  const { getEvents, events } = useGetEvents();
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      const data = await getEvents();
-
-      setEvents(data);
-    };
-    fetchEvents();
-  }, [events.length, setEvents]);
+    getEvents();
+  }, []);
 
   if (!events) return <Loading />;
 

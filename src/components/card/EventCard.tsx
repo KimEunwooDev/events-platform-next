@@ -12,7 +12,7 @@ interface Props {
 export default function EventCard({ event }: Props) {
   const router = useRouter();
   const moveToDetail = () => {
-    <EventDetail event={event} />;
+    <EventDetail />;
     router.push(`/event/${event.id}`);
   };
 

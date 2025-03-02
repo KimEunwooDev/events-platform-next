@@ -15,6 +15,13 @@ import { supabase } from "@/utils/supabase/client";
 
 export default function ProfileDropdown({ loggedInUser }: any) {
   const router = useRouter();
+
+  let isAdmin = false;
+
+  if (loggedInUser.user_metadata.role === "admin") {
+    isAdmin = true;
+  }
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     toast("Logged out");
@@ -25,7 +32,7 @@ export default function ProfileDropdown({ loggedInUser }: any) {
   const moveToPage = (value: string) => {
     router.push(`/${value}`);
   };
-  console.log(loggedInUser);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex justify-center items-center gap-2 rounded-md  ">
@@ -44,12 +51,13 @@ export default function ProfileDropdown({ loggedInUser }: any) {
           <User />
           <span>Profile</span>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => moveToPage("admin/manage")}>
-          <LayoutGrid />
-          <span>Manage events</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
+        {isAdmin && (
+          <DropdownMenuItem onClick={() => moveToPage("admin/manage")}>
+            <LayoutGrid />
+            <span>Manage events</span>
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuItem onClick={() => moveToPage("myevent")}>
           <CalendarDays />
           <span>My event</span>
         </DropdownMenuItem>

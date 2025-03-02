@@ -20,7 +20,7 @@ export default function UnathorizedPage() {
             onClick={() => router.push("/")}
             className="px-8 py-3 font-semibold rounded bg-orange-600 hover:bg-orange-200 border-orange-800"
           >
-            Back to homepage
+            Back to Home
           </Button>
         </div>
       </div>

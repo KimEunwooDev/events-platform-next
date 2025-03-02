@@ -46,7 +46,7 @@ export default function CommonHeader() {
     <header className={styles.header}>
       <div className={styles.header__logoBox} onClick={() => router.push("/")}>
         <Image src={logo} alt="logo-iamge" />
-        <span className={styles.header__logoBox_title}>EventSplash</span>
+        <span className="text-lg font-bold">EventSplash</span>
       </div>
       <div className={styles.header__profileBox}>
         <Button variant="outline">Bookmark</Button>
@@ -69,9 +69,8 @@ export default function CommonHeader() {
           </>
         )}
         {loggedInUser && (
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-2 cursor-pointer">
             <ProfileDropdown loggedInUser={loggedInUser} />
-            {/* <span>{loggedInUser.email}</span> */}
           </div>
         )}
       </div>

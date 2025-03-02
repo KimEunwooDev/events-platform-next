@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "@/app/styles/globals.css";
 import CommonHeader from "@/components/common/header/CommonHeader";
 import { Toaster } from "sonner";
+import { Provider } from "jotai";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <CommonHeader />
-        <main>{children}</main>
-        <Toaster />
+        <Provider>
+          <CommonHeader />
+          <main>{children}</main>
+          <Toaster />
+        </Provider>
       </body>
     </html>
   );

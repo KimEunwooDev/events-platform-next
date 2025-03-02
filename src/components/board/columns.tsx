@@ -22,7 +22,7 @@ import { eventsAtom } from "@/stores/atoms";
 export type Events = {
   id: string;
   title: string;
-  status: "pending" | "processing" | "success" | "failed";
+  status: string;
   date: string;
 };
 
