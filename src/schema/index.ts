@@ -11,5 +11,6 @@ export const formSchema = z.object({
     .string()
     .min(5, { message: "Must be 5 or more characters long" }),
   status: z.string(),
-  imageUrls: z.string().array(),
+  imageUrls: z.string().array().optional(),
+  selectedImages: z.string().optional(),
 });

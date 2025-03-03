@@ -24,7 +24,7 @@ import {
 } from "@radix-ui/react-popover";
 import { CalendarIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { format, set } from "date-fns";
+import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { DateTimePicker } from "@/components/ui/datetimepicker";
 import { Textarea } from "@/components/ui/textarea";
@@ -201,6 +201,7 @@ export default function EditEvent({
           <FormField
             control={form.control}
             name="selectedImages"
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             render={({ field: { onChange, ...fieldProps } }) => (
               <FormItem>
                 <FormLabel className="text-xl">Images</FormLabel>
