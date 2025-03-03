@@ -2,6 +2,9 @@
 
 A platform for creating, managing, and signing up for community events.
 
+![image](https://github.com/user-attachments/assets/590f20cf-e541-4768-92f4-c70badae27ca)
+
+
 ## 🛠 Project Summary
 
 EventSplash is a web application that allows community members to browse events, sign up for them, and add them directly to their Google Calendar. It also includes an admin dashboard for event management.
