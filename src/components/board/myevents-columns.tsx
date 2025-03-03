@@ -117,10 +117,10 @@ export const columns: ColumnDef<Event>[] = [
     accessorKey: "date",
     header: "Date",
   },
-  {
-    accessorKey: "status",
-    header: "Status",
-  },
+  // {
+  //   accessorKey: "status",
+  //   header: "Status",
+  // },
 
   {
     id: "actions",
