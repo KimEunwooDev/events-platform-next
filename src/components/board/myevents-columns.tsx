@@ -1,5 +1,4 @@
 "use client";
-import dynamic from "next/dynamic";
 
 import { google } from "calendar-link";
 
@@ -34,7 +33,7 @@ import { Event } from "@/types";
 export const EventAtcion = ({ event }: { event: Event }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [isConfirmed, setIsComfirmed] = useState(false);
+  const [, setIsComfirmed] = useState(false);
 
   const cancelSignUp = async () => {
     setOpen(false);
@@ -52,7 +51,19 @@ export const EventAtcion = ({ event }: { event: Event }) => {
   };
 
   const AddToCalendar = () => {
-    const googleUrl = google(event);
+    const calendarEvent = {
+      start: event.date,
+      id: event.id,
+      title: event.title,
+      description: event.description,
+      location: event.address,
+      status: event.status.toUpperCase() as
+        | "CONFIRMED"
+        | "TENTATIVE"
+        | "CANCELLED"
+        | undefined,
+    };
+    const googleUrl = google(calendarEvent);
     console.log(googleUrl);
 
     window.open(googleUrl, "_blank");
@@ -86,7 +97,7 @@ export const EventAtcion = ({ event }: { event: Event }) => {
         <DialogHeader>
           <DialogTitle>Are you sure want to cancel?</DialogTitle>
           <DialogDescription>
-            This will remove you from the event. You can't undo this action.
+            This will remove you from the event. You can{"'"}t undo this action.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

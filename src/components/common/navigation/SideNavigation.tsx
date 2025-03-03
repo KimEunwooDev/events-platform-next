@@ -2,8 +2,6 @@
 
 import styles from "./SideNavigation.module.scss";
 import { Button } from "@/components/ui/button";
-import { Input } from "../../ui/input";
-import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function SideNavigation() {

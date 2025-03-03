@@ -1,12 +1,12 @@
 import Image from "next/image";
 import styles from "./EventCard.module.scss";
-import { CardDTO } from "@/types/index";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import EventDetail from "@/app/event/[id]/page";
 
 interface Props {
-  event: CardDTO;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  event: any;
 }
 
 export default function EventCard({ event }: Props) {

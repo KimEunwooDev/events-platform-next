@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { supabase } from "@/utils/supabase/client";
 
@@ -6,16 +7,12 @@ import { AddToCalendarButton } from "add-to-calendar-button-react";
 
 import { useGetEvent } from "@/hooks/apis/useGetEvent";
 import { useGetUser } from "@/hooks/apis/useGetUser";
-import { loggedInUserAtom } from "@/stores/atoms";
 import { format } from "date-fns";
 import { MapPin } from "lucide-react";
-import Image from "next/image";
 import { useParams, notFound } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAtom, useAtomValue } from "jotai";
 import { toast } from "sonner";
 import Loading from "@/components/Loading";
-import ImageCarousel from "@/components/ui/imageCarousel";
 import EmblaCarousel from "@/components/carousel/EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";
 
@@ -87,15 +84,6 @@ export default function EventDetail() {
       {/* title & image  */}
       <div className="flex flex-col w-full justify-center content-center gap-0 sm:flex sm:flex-row sm:justify-items-start sm:h-[300px] mb-0 pb-0 mt-0 pt-0">
         <div className="sm:w-1/2 sm:h-full mb-0 pb-0">
-          {event.imageUrls && event.imageUrls.length === 0 && (
-            <Image
-              src={event.imageUrls[0]}
-              alt={event.title}
-              width={800}
-              height={600}
-              className="w-full mb-0 pb-0"
-            />
-          )}
           {event.imageUrls.length > 0 && (
             <EmblaCarousel event={event} options={OPTIONS} />
           )}

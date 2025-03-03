@@ -11,16 +11,14 @@ import "./EmbalCarousel.css";
 import Image from "next/image";
 
 type PropType = {
-  slides: number[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  event: any;
   options?: EmblaOptionsType;
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { event, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
-
-  //   const { selectedIndex, scrollSnaps, onDotButtonClick } =
-  //     useDotButton(emblaApi);
 
   const {
     prevBtnDisabled,
@@ -30,16 +28,16 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   } = usePrevNextButtons(emblaApi);
 
   return (
-    <section className="embla h-max-[300px] mb-0 pb-0 ">
+    <section className="embla mb-0 pb-0 ">
       <div className="embla__viewport " ref={emblaRef}>
         <div className="embla__container ">
-          {event.imageUrls.map((image, index) => (
+          {event.imageUrls.map((image: string, index: number) => (
             <div className="embla__slide" key={index}>
               <Image
                 src={image}
                 alt={`image-${index}`}
-                width={584}
-                height={476}
+                width={800}
+                height={600}
                 className="embla__slide__number"
               />
               {/* <div className="embla__slide__number">{index + 1}</div> */}
