@@ -1,10 +1,10 @@
-# Events Platform
+# Events Platform - EventSplash
 
 A platform for creating, managing, and signing up for community events.
 
 ## 🛠 Project Summary
 
-This is a Next.js project for managing and displaying events. The project includes features such as event creation, filtering, pagination and add them directly to their Google Calendar. It also includes an admin dashboard for event management.
+EventSplash is a web application that allows community members to browse events, sign up for them, and add them directly to their Google Calendar. It also includes an admin dashboard for event management.
 
 ### Key Features:
 
@@ -15,6 +15,8 @@ This is a Next.js project for managing and displaying events. The project includ
 - 🔍 Search and Pagination: Efficiently browse events with search and paginated views.
 
 ## Usage
+
+Open https://events-platform-next.vercel.app/ with your browser to see the result.
 
 ### Event Creation
 
@@ -31,13 +33,6 @@ Use the search bar on the home page to filter events by title.
 ### Pagination
 
 Navigate through the events using the pagination controls at the bottom of the event list.
-
-### Features
-
-Event creation with image upload
-Event management (view, edit, delete)
-Event filtering by title
-Pagination for event list
 
 ## 🎥 Demo Video
 
