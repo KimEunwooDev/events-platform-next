@@ -45,7 +45,7 @@ export function EventsTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="w-[1020px]">
       <Input
         placeholder="Filter events..."
         value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -54,7 +54,7 @@ export function EventsTable<TData, TValue>({
         }
         className="max-w-sm m-10 mb-0"
       />
-      <div className="rounded-md border m-10 mb-0 mt-2 justify-center ">
+      <div className="w-full rounded-md border m-10 mb-0 mt-2 justify-center">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -62,7 +62,7 @@ export function EventsTable<TData, TValue>({
                 {headerGroup.headers.map((header) => {
                   if (header.column.columnDef.header === "Title") {
                     return (
-                      <TableHead key={header.id} className="w-lg text-lg pl-10">
+                      <TableHead key={header.id} className=" text-lg pl-10">
                         {header.isPlaceholder
                           ? null
                           : flexRender(

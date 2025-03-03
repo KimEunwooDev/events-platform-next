@@ -3,8 +3,6 @@
 import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 import Image from "next/image";
-import { useAtom } from "jotai";
-import { eventsAtom } from "@/stores/atoms";
 import { EventsTable } from "@/components/board/event-table";
 import { columns } from "@/components/board/columns";
 import { useEffect } from "react";
@@ -17,6 +15,7 @@ export default function ManagePage() {
 
   useEffect(() => {
     getEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!events) return <Loading />;
@@ -51,5 +50,9 @@ export default function ManagePage() {
     }, 1000);
   }
 
-  return <>{events && <EventsTable columns={columns} data={events} />}</>;
+  return (
+    <div className="w-full">
+      {events && <EventsTable columns={columns} data={events} />}
+    </div>
+  );
 }
