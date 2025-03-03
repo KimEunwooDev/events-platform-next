@@ -24,7 +24,7 @@ import {
 } from "@radix-ui/react-popover";
 import { CalendarIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { format, set } from "date-fns";
+import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { DateTimePicker } from "@/components/ui/datetimepicker";
 import { Textarea } from "@/components/ui/textarea";
@@ -88,10 +88,7 @@ export default function CreatePage() {
     }
   };
 
-  const handleSubmit = async (data: z.infer<typeof formSchema>, e) => {
-    console.log(data, "data in handleSubmit");
-    console.log(selectedImages, "selectedImages in handleSubmit");
-
+  const handleSubmit = async (data: z.infer<typeof formSchema>) => {
     let imageUrls: (string | null | undefined)[] = [];
 
     if (newfilesArray.length > 0) {
@@ -162,7 +159,8 @@ export default function CreatePage() {
           {/* image input */}
           <FormField
             control={form.control}
-            name="selectedImages"
+            name="imageUrls"
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             render={({ field: { onChange, ...fieldProps } }) => (
               <FormItem>
                 <FormLabel className="text-xl">Images</FormLabel>
