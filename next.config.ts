@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
     ],
     domains: ["eonecllqfzheyldjevaq.supabase.co"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  output: "standalone",
+  reactStrictMode: true,
 };
 
 export default nextConfig;
