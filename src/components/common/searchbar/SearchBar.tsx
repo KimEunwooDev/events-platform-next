@@ -1,18 +1,22 @@
+import { useAtom } from "jotai";
 import styles from "./SearchBar.module.scss";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
+import { Search } from "lucide-react";
+import { searchAtom } from "@/stores/atoms";
 
 export default function SearchBar() {
-  const [search, setSearch] = useState<string>();
+  const [, setSearch] = useAtom<string>(searchAtom);
   const [text, setText] = useState<string>("");
 
-  const onChange = (event) => {
+  const onChange = (event: { target: { value: SetStateAction<string> } }) => {
     setText(event.target.value);
   };
 
   const onSearch = () => {
     if (text === "") {
-      setSearch("Korea");
+      setSearch("");
     } else {
+      console.log(text, "text in searchbar");
       setSearch(text);
     }
   };
@@ -38,7 +42,7 @@ export default function SearchBar() {
           onChange={onChange}
           onKeyDown={handleKeydown}
         />
-        {/* <img src="src/assets/icons/icon-search.svg" alt="" onClick={onSearch} /> */}
+        <Search className="opacity-30 cursor-pointer" onClick={onSearch} />
       </div>
     </div>
   );

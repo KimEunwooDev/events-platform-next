@@ -10,3 +10,5 @@ export const emailAtom = atom<string>("");
 export const passwordAtom = atom<string>("");
 
 export const loggedInUserAtom = atom<User | null>(null);
+
+export const searchAtom = atom<string>("");

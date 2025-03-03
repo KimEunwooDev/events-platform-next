@@ -11,10 +11,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/utils/supabase/supabase";
 import { useAtom } from "jotai";
 import { emailAtom, passwordAtom } from "@/stores/atoms";
 import { useRouter } from "next/navigation";
-import { useSignup } from "@/hooks/apis/useSignup";
+import { toast } from "sonner";
 
 export function SignupForm({
   className,
@@ -25,15 +26,26 @@ export function SignupForm({
 
   const router = useRouter();
 
-  const { signup, isSignedup, errorMessages } = useSignup();
-
-  if (isSignedup) {
-  }
-
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { role: "admin" } },
+    });
 
-    signup(email, password);
+    if (error) {
+      console.error("fail to create an account", error.message);
+    } else {
+      toast("Created successfully", {
+        description: `We've created your account for ${email}. Login to continue!`,
+        action: {
+          label: "Undo",
+          onClick: () => console.log("Undo"),
+        },
+      });
+      router.push("/auth/login"); // 로그인 페이지로 이동
+    }
   };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -41,20 +53,12 @@ export function SignupForm({
         <CardHeader>
           <CardTitle className="text-2xl">
             <p>Welcome!</p>
-            <p>Create your account</p>
+            <p>Create your admin account</p>
           </CardTitle>
           <CardDescription>
             Enter your email below to create your account
           </CardDescription>
         </CardHeader>
-        {errorMessages && (
-          <CardContent>
-            <div className="  text-red-500 transition-all duration-200">
-              <p className="text-wrap break-all">{errorMessages}</p>
-            </div>
-          </CardContent>
-        )}
-
         <CardContent>
           <form onSubmit={handleSignup}>
             <div className="flex flex-col gap-6">
@@ -79,21 +83,9 @@ export function SignupForm({
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full  bg-blue-700 text-white">
-                Create account
+              <Button type="submit" className="w-full">
+                Create admin account
               </Button>
-              <div>
-                <p className="mt-0 mb-1 p-0 text-center text-sm ">
-                  Are you staff?
-                </p>
-                <Button
-                  variant="outline"
-                  className="w-full mt-0"
-                  onClick={() => router.push("/auth/signup-admin")}
-                >
-                  Create admin account
-                </Button>
-              </div>
             </div>
           </form>
         </CardContent>

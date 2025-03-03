@@ -16,7 +16,7 @@ import { useAtom } from "jotai";
 import { emailAtom, loggedInUserAtom, passwordAtom } from "@/stores/atoms";
 // import { supabase } from "@/utils/supabase/supabase";
 import { useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { supabase } from "@/utils/supabase/client";
 
 export function LoginForm({
   className,
@@ -29,8 +29,6 @@ export function LoginForm({
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const supabase = await createClient();
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -57,7 +55,7 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6 ", className)} {...props}>
       <Card>
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
@@ -65,12 +63,12 @@ export function LoginForm({
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
-        {errorMessages && (
-          <CardContent>
-            <div className="text-red-500 ">{errorMessages}</div>
-          </CardContent>
-        )}
         <CardContent>
+          {errorMessages && (
+            <div className="text-wrap text-red-500 transition-all duration-200">
+              {errorMessages}
+            </div>
+          )}
           <form onSubmit={handleLogin}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-3">
@@ -108,14 +106,11 @@ export function LoginForm({
                 <Button type="submit" className="w-full">
                   Login
                 </Button>
-                <Button variant="outline" className="w-full">
-                  Login with Google
-                </Button>
               </div>
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
-              <a href="#" className="underline underline-offset-4">
+              <a href="/auth/signup" className="underline underline-offset-4">
                 Sign up
               </a>
             </div>

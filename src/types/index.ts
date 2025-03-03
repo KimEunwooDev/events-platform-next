@@ -1,4 +1,5 @@
 export interface CardDTO {
+  id: string;
   title: string;
   date: string;
   time_start: string;
@@ -6,7 +7,6 @@ export interface CardDTO {
   address: string;
   summary: string;
   description: string;
-  status: string;
   imageUrls: [];
 }
 

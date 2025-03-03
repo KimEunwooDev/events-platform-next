@@ -38,7 +38,7 @@ export default function ProfileDropdown({ loggedInUser }: any) {
       <DropdownMenuTrigger className="flex justify-center items-center gap-2 rounded-md  ">
         <Avatar>
           <AvatarImage
-            src="https://github.com/shadcn.png"
+            src="/assets/images/user.png"
             className="cursor-pointer"
           />
           <AvatarFallback>CN</AvatarFallback>
@@ -47,10 +47,10 @@ export default function ProfileDropdown({ loggedInUser }: any) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuItem>
+        {/* <DropdownMenuItem>
           <User />
           <span>Profile</span>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
         {isAdmin && (
           <DropdownMenuItem onClick={() => moveToPage("admin/manage")}>
             <LayoutGrid />

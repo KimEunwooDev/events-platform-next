@@ -5,7 +5,7 @@ import logo from "../../../../public/assets/images/image-logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 // import { supabase } from "@/utils/supabase/supabase";
 import { useAtom } from "jotai";
 import { loggedInUserAtom } from "@/stores/atoms";
@@ -44,17 +44,19 @@ export default function CommonHeader() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.header__logoBox} onClick={() => router.push("/")}>
+      <div
+        className={styles.header__logoBox}
+        onClick={() => (window.location.href = "/")}
+      >
         <Image src={logo} alt="logo-iamge" />
         <span className="text-lg font-bold">EventSplash</span>
       </div>
       <div className={styles.header__profileBox}>
-        <Button variant="outline">Bookmark</Button>
         {!loggedInUser && (
           <>
             <Button
               variant="outline"
-              className="text-orange-500 hover:bg-orange-50 hover:text-orange-500 border-orange-400"
+              className=" text-orange-500 hover:bg-orange-50 hover:text-orange-500 border-orange-400"
               onClick={() => router.push("/auth/login")}
             >
               Log In

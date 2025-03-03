@@ -19,9 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/utils/supabase/client";
 import { toast } from "sonner";
-import { useAtom } from "jotai";
-import { eventsAtom } from "@/stores/atoms";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -31,18 +29,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { set } from "date-fns";
-import { atcb_action } from "add-to-calendar-button-react";
 import { Event } from "@/types";
-import CalendarButtonWrapper from "../CalendarButtonWrapper";
-
-const AddToCalendarButton = dynamic(
-  () =>
-    import("add-to-calendar-button-react").then(
-      (mod) => mod.AddToCalendarButton
-    ),
-  { ssr: false, loading: () => <div>Loading...</div> }
-);
 
 export const EventAtcion = ({ event }: { event: Event }) => {
   const router = useRouter();

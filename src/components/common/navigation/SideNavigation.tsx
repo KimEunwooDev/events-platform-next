@@ -11,16 +11,7 @@ export default function SideNavigation() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.container__searchBox}>
-        <Input
-          type="text"
-          placeholder="Search events"
-          className="focus-visible:ring-0"
-        />
-        <Button variant={"outline"} size="icon">
-          <Search className="w-4 h-4" />
-        </Button>
-      </div>
+      <div className={styles.container__searchBox}></div>
       <div className={styles.container__buttonBox}>
         <Button
           variant={"outline"}

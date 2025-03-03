@@ -18,11 +18,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Loading from "../Loading";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useState } from "react";
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];

@@ -15,6 +15,9 @@ import { useEffect, useState } from "react";
 import { useAtom, useAtomValue } from "jotai";
 import { toast } from "sonner";
 import Loading from "@/components/Loading";
+import ImageCarousel from "@/components/ui/imageCarousel";
+import EmblaCarousel from "@/components/carousel/EmblaCarousel";
+import { EmblaOptionsType } from "embla-carousel";
 
 export default function EventDetail() {
   const { id } = useParams();
@@ -77,24 +80,29 @@ export default function EventDetail() {
     }
   };
 
+  const OPTIONS: EmblaOptionsType = {};
+
   return (
     <div className="">
       {/* title & image  */}
-      <div className="flex justify-items-start w-full h-[300px]">
-        <div className="w-1/2 h-full ">
-          {event.imageUrls && event.imageUrls.length > 0 && (
+      <div className="flex flex-col w-full justify-center content-center gap-0 sm:flex sm:flex-row sm:justify-items-start sm:h-[300px] mb-0 pb-0 mt-0 pt-0">
+        <div className="sm:w-1/2 sm:h-full mb-0 pb-0">
+          {event.imageUrls && event.imageUrls.length === 0 && (
             <Image
               src={event.imageUrls[0]}
               alt={event.title}
-              width={584}
-              height={476}
-              className="w-full  h-full"
+              width={800}
+              height={600}
+              className="w-full mb-0 pb-0"
             />
           )}
+          {event.imageUrls.length > 0 && (
+            <EmblaCarousel event={event} options={OPTIONS} />
+          )}
         </div>
-        <div className="relative w-full flex items-center justify-center py-10">
+        <div className="relative -top-18 sm:top-0 w-full flex items-center justify-center py-10">
           <div className="absolute inset-0 bg-gradient-to-t from-amber-500 to-amber-200 opacity-50"></div>
-          <h1 className="relative text-gray-700 text-5xl font-bold text-center">
+          <h1 className="relative text-gray-900 text-5xl font-bold text-center">
             {event.title}
           </h1>
         </div>

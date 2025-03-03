@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex">
+    <div className="flex flex-col sm:flex-row">
       <SideNavigation />
       <main>{children}</main>
       <Toaster />
